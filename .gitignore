@@ -1,0 +1,6 @@
+*.pyx
+*.pyd
+*.so
+
+__pycache__/
+

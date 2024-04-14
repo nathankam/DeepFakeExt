@@ -1,23 +1,37 @@
 # Project Name
 
-## Description
+## Loading the project from github 
 
-Deep Fake Extension Project
+### Get the code
 
-## Table of Contents
+- Open a new project in VSCode
+- On the main page click the 'Clone a GitHub Repository' option 
+- Copy paste the repository url: *git@github.com:nathankam/DeepFakeExt.git*
+- Select a location for the project on your computer
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [License](#license)
+### Set the project on your computer to match the remote repository on GitHub 
 
-## Installation
+- git remote add origin *https://github.com/nathankam/DeepFakeExt*
 
-[Provide instructions on how to install and set up your project.]
+## Run the project
 
-## Usage
+- check that dependencies are installed (fastapi / uvicorn)
 
-[Provide instructions on how to use your project.]
+## Load your model in the data/models folder 
 
-## License
+- Copy your *.h5* file in the folder 
+- You can put diffferent models there if you want
 
-[Specify the license under which your project is distributed.]
+## Run the Backend Server 
+
+- Open a terminal window 
+- Run the following command (copy/paste + enter)
+
+```uvicorn backend.src.server.main:app --reload```
+
+This creates a local host that will enable us to make API calls to our python backend from the frontend (our Chrome Extension). To have a better view at our API endpoints and to check that they work well we can go to *http:localhost:8000/docs*
+
+## Make calls to our API 
+
+
+

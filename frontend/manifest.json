@@ -1,10 +1,13 @@
 {
   "name": "Deep Fake Extension",
   "description": "Base Level Extension",
+  "permissions": [
+    "http://localhost:8002/*"
+  ],
   "version": "1.0",
   "manifest_version": 3,
   "action": {
-    "default_popup": "popup/popup.html",
+    "default_popup": "popup.html",
     "default_icon": "images/hello_extensions.png"
   }
 }
