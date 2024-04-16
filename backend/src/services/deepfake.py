@@ -16,20 +16,58 @@ def get_model_info(model_path):
 
     return layers_info
 
+import cv2
+
+import face_recognition
+
+def process_frontend_image(frontend_image, target_size=(32, 32)):
+    # Load the image
+    image = cv2.imread(frontend_image)
+    
+    # change color from cv to face recog
+    rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    
+    # detect faces in the image
+    face_locations = face_recognition.face_locations(rgb_image)
+    
+    # If no face  return None
+    if not face_locations:
+        return None
+    
+    # crop  around the first detected face
+    top, right, bottom, left = face_locations[0]
+    face_image = image[top:bottom, left:right]
+    
+    # resize the cropped face image to the target size
+    resized_face_image = cv2.resize(face_image, target_size)
+    
+    return resized_face_image
 
 
-def process_frontend_image(frontend_image):
 
-    # A function that takes the input image and make it ready for the model
-    # Return an image with face detected / cropped / adapted to the model input shape
+def predict_deepfake(deepfake_model, image):
+    
+    image = image.astype('float32') / 255.0
+    # reshape the image for the input shape of the model
+    image = np.expand_dims(image, axis=0)
 
+    prediction = deepfake_model.predict(image)
 
-    return 
+    return prediction
 
-def predict_deepfake(deepfake_model, image): 
+# Load the trained deepfake model
+deepfake_model = load_model('trained_2conv_1dense_2022_1_8_v1.h5')  # Replace with the path to your model file
 
-    # A function that takes the model and the image and return the prediction
-    # Return the prediction of the model on the image
+# Load the input image
+input_image = cv2.imread('image')  # this should be the input image from the youtube
 
-    return 
+# process the input image
+processed_image = process_frontend_image(input_image)
 
+if processed_image is not None:
+    # get the prediction
+    prediction = predict_deepfake(deepfake_model, processed_image)
+
+    print("Prediction:", prediction)
+else:
+    print("No face detected in the image.")
