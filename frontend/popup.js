@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('showModelInfo').addEventListener('click', function() {
 
         // Make a call to your FastAPI backend at the endpoint /model_info
-        fetch('http://localhost:8002/model_info', {
+        fetch('http://localhost:8000/model_info', {
             method: 'GET', // or 'POST' if your backend expects POST requests
             headers: {
                 'Content-Type': 'application/json'
