@@ -15,7 +15,28 @@
 
 ## Run the project
 
-- check that dependencies are installed (fastapi / uvicorn)
+### Install FastAPI and Uvicorn 
+
+- In terminal 
+```pip install uvicorn```
+```pip install fastapi```
+
+### Install face_recognition 
+
+The face recognition library uses C++, another programming language to recognize faces. To use it, our machine needs a package called cmake, to download that package we will use homebrew. If you don't have homebrew on your computer you can follow these steps. 
+
+- Install HomeBrew (Package installer)
+```/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"```
+
+- Check that homebrew is installed correctly 
+```brew --version```
+
+- If brew is installed successfully -> Install cmake (needed for the face_recognition library)
+```brew install cmake```
+
+- Finally 
+```pip install face_recognition```
+
 
 ## Load your model in the data/models folder 
 
