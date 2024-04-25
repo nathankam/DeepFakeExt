@@ -2,12 +2,36 @@
   "name": "Deep Fake Extension",
   "description": "Base Level Extension",
   "permissions": [
-    "http://localhost:8000/*"
+    "storage",
+    "activeTab",
+    "tabs",
+    "webNavigation"
   ],
   "version": "1.0",
   "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "run_at": "document_end",
+      "js": ["content.js"],
+      "css": ["content.css"]
+    }
+  ],
   "action": {
     "default_popup": "popup.html",
-    "default_icon": "images/hello_extensions.png"
-  }
+    "default_icon": "images/deepfake-icon.png"
+  },
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "http://localhost:8000/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [ "/images/*"],
+      "matches": [ "https://www.youtube.com/*" ]
+    }
+  ]
 }

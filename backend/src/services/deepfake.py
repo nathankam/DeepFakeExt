@@ -2,7 +2,6 @@
 from tensorflow.keras.models import load_model
 import numpy as np
 
-
 def get_model_info(model_path): 
 
     model = load_model(model_path)
@@ -54,6 +53,7 @@ def predict_deepfake(deepfake_model, image):
     prediction = deepfake_model.predict(image)
 
     return prediction
+
 
 # Load the trained deepfake model
 deepfake_model = load_model('trained_2conv_1dense_2022_1_8_v1.h5')  # Replace with the path to your model file

@@ -15,15 +15,31 @@
 
 ## Run the project
 
-### Install FastAPI and Uvicorn 
+We need to install the librairies that will be used by our backend. 
+- Uvicorn: Running a local server 
+- FastAPI: API library
+- Pillow: Handling images 
+- Numpy: Handling images as array of numbers 
+- OpenCV for computer vision 
+
+
+### Install Libraries
 
 - In terminal 
 ```pip install uvicorn```
 ```pip install fastapi```
+```pip install matplotlib```
+```pip install numpy```
+```pip install opencv-python```
+
+- Or 
+```pip install requirements.txt```
+
+
 
 ### Install face_recognition 
 
-The face recognition library uses C++, another programming language to recognize faces. To use it, our machine needs a package called cmake, to download that package we will use homebrew. If you don't have homebrew on your computer you can follow these steps. 
+The face recognition library uses C++, another programming language to recognize faces. To use it, our machine needs a package called cmake, to download that package we will use homebrew. If you don't have homebrew on your computer you can follow these steps. We also need some tools that xcode provides (xcode should already be installed on you mac)
 
 - Install HomeBrew (Package installer)
 ```/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"```
@@ -33,6 +49,10 @@ The face recognition library uses C++, another programming language to recognize
 
 - If brew is installed successfully -> Install cmake (needed for the face_recognition library)
 ```brew install cmake```
+```xcode-select --install```
+
+- Check that cmake is installed (you might need to close VSCode and re-open it)
+```cmake --version```
 
 - Finally 
 ```pip install face_recognition```
