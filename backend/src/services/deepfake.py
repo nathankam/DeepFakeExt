@@ -56,7 +56,7 @@ def predict_deepfake(deepfake_model, image):
 
 
 # Load the trained deepfake model
-deepfake_model = load_model('trained_2conv_1dense_2022_1_8_v1.h5')  # Replace with the path to your model file
+deepfake_model = load_model('/Users/fionavitali/Downloads/DeepFakeExt/backend/data/models/trained_2conv_1dense_2022_1_8_v1.h5')  # Replace with the path to your model file
 
 # Load the input image
 input_image = cv2.imread('image')  # this should be the input image from the youtube
