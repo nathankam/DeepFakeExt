@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+
     // callApi Button is the link to the button we createed
     document.getElementById('showModelInfo').addEventListener('click', function() {
 
@@ -26,6 +27,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+
+    chrome.runtime.sendMessage({ action: 'fetchData' }, function(response) {
+        if (response.data) {
+            console.log('Data from backend:', response.data);
+        } else if (response.error) {
+            console.log('Error:', response.error);
+        }
+    });
+
+    chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+        if (message.action === 'updateResponse') {
+            document.getElementById('response').innerText = message.content;
+        };
+
+        if (message.action === 'updateImage') {
+            const imageElement = document.getElementById('detected_face');
+            console.log('Image data:', message.content);
+            imageElement.src = 'data:image;base64,' + message.content;
+            
+        };
+
+    });
 
 });
 

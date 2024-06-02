@@ -36,32 +36,11 @@ function captureFrameFromVideo() {
         canvas.height = videoElement.videoHeight;
         canvas.getContext('2d').drawImage(videoElement, 0, 0, canvas.width, canvas.height);
         var frameDataUrl = canvas.toDataURL(); // Data URL of the captured frame
-        
-        // Make a call to your FastAPI backend at the endpoint /model_info
-        fetch('http://localhost:8000/save_frame', {
-            method: 'POST', // or 'POST' if your backend expects POST requests
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            body: JSON.stringify({
-                'image_data': frameDataUrl
-            })
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Do something with the data you received
-            console.log(data);
-        })
-        .catch(error => {
-            console.error('There was a problem with your fetch operation:', error);
-        });
 
+        chrome.runtime.sendMessage(
+            {action: 'fetchData', frameDataUrl: frameDataUrl}, 
+            function(response) {console.log('Response from background script:', response);}
+        );
 
     } else {
         console.error('Video element not found');

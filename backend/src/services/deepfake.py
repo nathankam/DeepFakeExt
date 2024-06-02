@@ -1,23 +1,26 @@
 # Importing the load model function from tensorflow
 from tensorflow.keras.models import load_model
 import numpy as np
+import cv2
+import face_recognition
+
 
 def get_model_info(model_path): 
 
     model = load_model(model_path)
-   
-    layers_info = {}
+
+    layers_info = []
     for layer in model.layers:
-        layers_info[layer.name] = {
-            'input_shape': layer.input_shape,
-            'output_shape': layer.output_shape,
-        }
+        layers_info.append({
+            "name": layer.name,
+            "type": layer.__class__.__name__,
+            "activation": layer.activation.__name__ if hasattr(layer, 'activation') else None
+        })
+
+    print('>>> Model Info :', layers_info)
 
     return layers_info
 
-import cv2
-
-import face_recognition
 
 def process_frontend_image(frontend_image, target_size=(32, 32)):
     # Load the image
@@ -43,7 +46,6 @@ def process_frontend_image(frontend_image, target_size=(32, 32)):
     return resized_face_image
 
 
-
 def predict_deepfake(deepfake_model, image):
     
     image = image.astype('float32') / 255.0
@@ -54,9 +56,9 @@ def predict_deepfake(deepfake_model, image):
 
     return prediction
 
+"""
 
-# Load the trained deepfake model
-deepfake_model = load_model('/Users/fionavitali/Downloads/DeepFakeExt/backend/data/models/trained_2conv_1dense_2022_1_8_v1.h5')  # Replace with the path to your model file
+deepfake_model = load_model('./backend/data/models/trained_2conv_1dense_2022_1_8_v1.h5')  # Replace with the path to your model file
 
 # Load the input image
 input_image = cv2.imread('image')  # this should be the input image from the youtube
@@ -71,3 +73,5 @@ if processed_image is not None:
     print("Prediction:", prediction)
 else:
     print("No face detected in the image.")
+
+"""

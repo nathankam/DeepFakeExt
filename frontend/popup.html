@@ -1,8 +1,22 @@
 <html>
+  <head>
+    <title>Deep Fake Extension</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
   <body>
-    <h1>Deep Fake Extension !</h1>
-  
-    <button id="showModelInfo">Call API</button>
-    <script src="popup.js"></script>
+    <div class="popup-content">
+      <h1>Deep Fake Extension</h1>
+      <p>This is my extension to help spot deep-fakes on youtube!</p>
+
+      <h2>Tutorial</h2>
+      <p>Click the button below to get the model info</p>
+      <div id="model_info"></div>
+      <button id="showModelInfo">Get Model Info</button>
+
+      <h2>Deepfake Detector</h2>
+      <img id="detected_face" src='images/apple.png'/>
+      <div id="response"></div>
+      <script src="popup.js"></script>
+    </div>
   </body>
 </html>
